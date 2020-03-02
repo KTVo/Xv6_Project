@@ -532,3 +532,48 @@ procdump(void)
     cprintf("\n");
   }
 }
+
+int chmod(char* pathname, int mode)
+{
+  int digit[4] = {0, 0, 0, 0};:
+
+  if(mode > 7777 && mode < 0)
+  {
+  	printf("\nError: The inputted mode must be four octal digits (0-7).\n");
+        return -1;
+  }
+
+  int tempMode = mode; //Temporarily stores mode to break int -> digits
+
+  while(tempMode > 0)
+  {
+    int mod = 
+  }
+
+  switch(mode)
+  {
+    case 0:{}; break
+
+    case 1:{} ;break;
+    
+    case 2:{} ;break;
+
+    case 3:{} ;break;
+
+    case 4:{} ;break;
+ 
+    case 5:{} ;break;
+    
+    case 6:{} ;break;
+
+    case 7:{} ;break;
+
+    default: printf("\nError: Mode '%d' cannot be found.\n");
+
+  }
+}
+int chown(char*, int);
+int chgrp(char*, int);
+
+
+
