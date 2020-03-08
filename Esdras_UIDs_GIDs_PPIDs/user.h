@@ -24,12 +24,12 @@ int getpid(void);
 char* sbrk(int);
 int sleep(int);
 int uptime(void);
-uint getuid(void) // UID of the current process
-uint getgid(void) // GID of the current process
-uint getppid(void) // process ID of the parent process
-int setuid(uint) // set UID
-int setgid(uint) // set GID
-
+uint getuid(void); // UID of the current process
+uint getgid(void); // GID of the current process
+uint getppid(void); // process ID of the parent process
+int setuid(uint); // set UID
+int setgid(uint); // set GID
+int date(struct rtcdate*); //obtains the date
 
 // ulib.c
 int stat(char*, struct stat*);

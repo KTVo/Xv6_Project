@@ -25,3 +25,4 @@
 #define SYS_getppid 24
 #define SYS_setuid 25
 #define SYS_setgid 26
+#define SYS_date   27

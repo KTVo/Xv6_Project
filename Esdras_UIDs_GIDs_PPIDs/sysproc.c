@@ -36,6 +36,26 @@ sys_kill(void)
   return kill(pid);
 }
 
+
+
+
+
+
+int
+sys_date (void)
+{
+	struct rtcdate *d;
+	if(argptr(0, (void*)&d, sizeof(struct rtcdate)) < 0)
+		return -1;
+	 cmostime(d);
+	  return 0;
+}
+
+
+
+
+
+
 int
 sys_getpid(void)
 {
@@ -91,7 +111,7 @@ sys_uptime(void)
 }
 
 
-/*uint sys_getuid(void)
+uint sys_getuid(void)
 {
 	return getuid();
 }
@@ -106,13 +126,13 @@ uint sys_getppid(void)
 	return getppid();
 }
 
-int setuid(uint)
+int setuid(uint val_uid)
 {
-	return setuid();
+	return setuid(val_uid);
 }
-*/
-int setgid(uint)
+
+int setgid(uint val_gid)
 {
-	return setgid();
+	return setgid(val_gid);
 }
 
