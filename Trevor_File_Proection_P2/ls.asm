@@ -147,7 +147,7 @@ main(int argc, char *argv[])
  11c:	0f 88 9e 01 00 00    	js     2c0 <ls+0x1c0>
   if(fstat(fd, &st) < 0){
  122:	83 ec 08             	sub    $0x8,%esp
- 125:	8d b5 d4 fd ff ff    	lea    -0x22c(%ebp),%esi
+ 125:	8d b5 c8 fd ff ff    	lea    -0x238(%ebp),%esi
  12b:	89 c3                	mov    %eax,%ebx
  12d:	56                   	push   %esi
  12e:	50                   	push   %eax
@@ -156,7 +156,7 @@ main(int argc, char *argv[])
  137:	85 c0                	test   %eax,%eax
  139:	0f 88 c1 01 00 00    	js     300 <ls+0x200>
   switch(st.type){
- 13f:	0f b7 85 d4 fd ff ff 	movzwl -0x22c(%ebp),%eax
+ 13f:	0f b7 85 c8 fd ff ff 	movzwl -0x238(%ebp),%eax
  146:	66 83 f8 01          	cmp    $0x1,%ax
  14a:	74 64                	je     1b0 <ls+0xb0>
  14c:	66 83 f8 02          	cmp    $0x2,%ax
@@ -177,8 +177,8 @@ main(int argc, char *argv[])
  16d:	8d 76 00             	lea    0x0(%esi),%esi
     printf(1, "%s %d %d %d\n", fmtname(path), st.type, st.ino, st.size);
  170:	83 ec 0c             	sub    $0xc,%esp
- 173:	8b 95 e4 fd ff ff    	mov    -0x21c(%ebp),%edx
- 179:	8b b5 dc fd ff ff    	mov    -0x224(%ebp),%esi
+ 173:	8b 95 d8 fd ff ff    	mov    -0x228(%ebp),%edx
+ 179:	8b b5 d0 fd ff ff    	mov    -0x230(%ebp),%esi
  17f:	57                   	push   %edi
  180:	89 95 b4 fd ff ff    	mov    %edx,-0x24c(%ebp)
  186:	e8 d5 fe ff ff       	call   60 <fmtname>
@@ -227,7 +227,7 @@ main(int argc, char *argv[])
     while(read(fd, &de, sizeof(de)) == sizeof(de)){
  1f9:	8d b4 26 00 00 00 00 	lea    0x0(%esi,%eiz,1),%esi
  200:	83 ec 04             	sub    $0x4,%esp
- 203:	8d 85 c4 fd ff ff    	lea    -0x23c(%ebp),%eax
+ 203:	8d 85 b8 fd ff ff    	lea    -0x248(%ebp),%eax
  209:	6a 10                	push   $0x10
  20b:	50                   	push   %eax
  20c:	53                   	push   %ebx
@@ -236,12 +236,12 @@ main(int argc, char *argv[])
  215:	83 f8 10             	cmp    $0x10,%eax
  218:	0f 85 34 ff ff ff    	jne    152 <ls+0x52>
       if(de.inum == 0)
- 21e:	66 83 bd c4 fd ff ff 	cmpw   $0x0,-0x23c(%ebp)
+ 21e:	66 83 bd b8 fd ff ff 	cmpw   $0x0,-0x248(%ebp)
  225:	00 
  226:	74 d8                	je     200 <ls+0x100>
       memmove(p, de.name, DIRSIZ);
  228:	83 ec 04             	sub    $0x4,%esp
- 22b:	8d 85 c6 fd ff ff    	lea    -0x23a(%ebp),%eax
+ 22b:	8d 85 ba fd ff ff    	lea    -0x246(%ebp),%eax
  231:	6a 0e                	push   $0xe
  233:	50                   	push   %eax
  234:	ff b5 a4 fd ff ff    	pushl  -0x25c(%ebp)
@@ -260,10 +260,10 @@ main(int argc, char *argv[])
  257:	0f 88 cb 00 00 00    	js     328 <ls+0x228>
       printf(1, "%s %d %d %d\n", fmtname(buf), st.type, st.ino, st.size);
  25d:	83 ec 0c             	sub    $0xc,%esp
- 260:	8b 8d e4 fd ff ff    	mov    -0x21c(%ebp),%ecx
- 266:	8b 95 dc fd ff ff    	mov    -0x224(%ebp),%edx
+ 260:	8b 8d d8 fd ff ff    	mov    -0x228(%ebp),%ecx
+ 266:	8b 95 d0 fd ff ff    	mov    -0x230(%ebp),%edx
  26c:	57                   	push   %edi
- 26d:	0f bf 85 d4 fd ff ff 	movswl -0x22c(%ebp),%eax
+ 26d:	0f bf 85 c8 fd ff ff 	movswl -0x238(%ebp),%eax
  274:	89 8d ac fd ff ff    	mov    %ecx,-0x254(%ebp)
  27a:	89 95 b0 fd ff ff    	mov    %edx,-0x250(%ebp)
  280:	89 85 b4 fd ff ff    	mov    %eax,-0x24c(%ebp)

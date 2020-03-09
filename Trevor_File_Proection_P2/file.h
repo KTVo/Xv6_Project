@@ -24,11 +24,8 @@ struct inode {
   uint size;
   uint addrs[NDIRECT+1];
 
-<<<<<<< HEAD
   uint uid;
-=======
   unit uid;
->>>>>>> 6998c9133a7917b2fc12cc9a6f4de995374e3f77
   uint gid;
   union mode_t mode;
 };

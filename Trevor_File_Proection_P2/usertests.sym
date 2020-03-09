@@ -12,11 +12,11 @@
 00000000 .debug_loc
 00000000 .debug_ranges
 00000000 usertests.c
-00005e60 args.1446
+00005e60 args.1489
 00000000 ulib.c
 00000000 printf.c
 00003980 printint
-00005538 digits.1082
+00005538 digits.1110
 00000000 umalloc.c
 00005ee0 freep
 00005ee4 base

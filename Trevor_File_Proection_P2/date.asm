@@ -19,21 +19,21 @@ main(int argc, char *argv[])
    d:	51                   	push   %ecx
   struct rtcdate r;
 
-  if(date(&r))
+  //Displays if unable to obtain date
    e:	8d 45 e0             	lea    -0x20(%ebp),%eax
 {
   11:	83 ec 30             	sub    $0x30,%esp
-  if(date(&r))
+  //Displays if unable to obtain date
   14:	50                   	push   %eax
   15:	e8 39 03 00 00       	call   353 <date>
   1a:	83 c4 10             	add    $0x10,%esp
   1d:	85 c0                	test   %eax,%eax
   1f:	75 26                	jne    47 <main+0x47>
+  if(date(&r))
   {
     printf(2, "date failed\n");
   }
 
-  printf(1, "%d/%d/%d %d:%d:%d\n", r.day, r.month, r.year, r.hour, r.minute, r.second);
   21:	ff 75 e0             	pushl  -0x20(%ebp)
   24:	ff 75 e4             	pushl  -0x1c(%ebp)
   27:	ff 75 e8             	pushl  -0x18(%ebp)
@@ -43,11 +43,11 @@ main(int argc, char *argv[])
   33:	68 85 07 00 00       	push   $0x785
   38:	6a 01                	push   $0x1
   3a:	e8 d1 03 00 00       	call   410 <printf>
-
-  exit();
+  //Displays the date and time to terminal
+  printf(1, "%d/%d/%d %d:%d:%d\n", r.day, r.month, r.year, r.hour, r.minute, r.second);
   3f:	83 c4 20             	add    $0x20,%esp
   42:	e8 6c 02 00 00       	call   2b3 <exit>
-    printf(2, "date failed\n");
+  {
   47:	50                   	push   %eax
   48:	50                   	push   %eax
   49:	68 78 07 00 00       	push   $0x778
