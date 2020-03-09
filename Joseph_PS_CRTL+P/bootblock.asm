@@ -348,4 +348,8 @@ stosb(void *addr, int data, int cnt)
     7db9:	b8 00 00 00 00       	mov    $0x0,%eax
     7dbe:	fc                   	cld    
     7dbf:	f3 aa                	rep stos %al,%es:(%edi)
+               "=D" (addr), "=c" (cnt) :
+               "0" (addr), "1" (cnt), "a" (data) :
+               "memory", "cc");
+}
     7dc1:	eb cc                	jmp    7d8f <bootmain+0x52>

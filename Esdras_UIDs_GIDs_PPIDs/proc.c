@@ -200,6 +200,12 @@ fork(void)
   np->parent = curproc;
   *np->tf = *curproc->tf;
 
+
+  						np->uid = curproc->uid;
+  						np->gid = curproc->guid;
+
+
+
   // Clear %eax so that fork returns 0 in the child.
   np->tf->eax = 0;
 
