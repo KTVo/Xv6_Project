@@ -25,8 +25,8 @@ int sleep(int);
 int uptime(void);
 int date(struct rtcdate *);
 int chmod(char*, int);
-int chown(char*, int);
-int chgrp(char*, int);
+//int chown(char*, int);
+//int chgrp(char*, int);
 
 
 // ulib.c

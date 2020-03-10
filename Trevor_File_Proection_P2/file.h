@@ -25,7 +25,6 @@ struct inode {
   uint addrs[NDIRECT+1];
 
   uint uid;
-  unit uid;
   uint gid;
   union mode_t mode;
 };

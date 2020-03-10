@@ -532,7 +532,7 @@ procdump(void)
     cprintf("\n");
   }
 }
-
+/*
 int chmod(char* pathname, int mode)
 {
   int digit[4] = {0, 0, 0, 0};:
@@ -575,5 +575,5 @@ int chmod(char* pathname, int mode)
 int chown(char*, int);
 int chgrp(char*, int);
 
-
+*/
 

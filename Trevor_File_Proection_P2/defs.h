@@ -120,9 +120,9 @@ void            userinit(void);
 int             wait(void);
 void            wakeup(void*);
 void            yield(void);
-int             chmod(char*, int);
-int             chown(char*, int);
-int             chgrp(char*, int);
+int             chmod(void);//Phase1 
+//int             chown(char*, int);//Phase2
+//int             chgrp(char*, int);//Phase3
 
 // swtch.S
 void            swtch(struct context**, struct context*);

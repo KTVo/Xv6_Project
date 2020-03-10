@@ -21,6 +21,6 @@
 #define SYS_mkdir  20
 #define SYS_close  21
 #define SYS_date   22
-#define SYS_chown  23
-#define SYS_chgrp  24
-#define SYS_chmod  25
+#define SYS_chmod  23
+//#define SYS_chown  24
+//#define SYS_chgrp  25
