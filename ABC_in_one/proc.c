@@ -85,7 +85,22 @@ allocproc(void)
   release(&ptable.lock);
   return 0;
 
+
+  
 found:
+
+  if(nextpid == 1)
+  {
+	  p->uid = 0;
+	  p->gid = 0;
+  }else{
+	  p->uid = myproc()->uid;
+	  p->gid = myproc()->gid;
+	}
+
+
+
+
   p->state = EMBRYO;
   p->pid = nextpid++;
 
