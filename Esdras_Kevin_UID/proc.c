@@ -112,6 +112,9 @@ found:
   memset(p->context, 0, sizeof *p->context);
   p->context->eip = (uint)forkret;
 
+  //added here the cp part for initializing start_ticks
+  p->start_ticks = ticks;
+
   return p;
 }
 
@@ -525,6 +528,29 @@ procdump(void)
   char *state;
   uint pc[10];
 
+
+  cprintf("\n");
+  cprintf("PID \t Name \t Elapsed \tState \t Size \tPCs \t\n");
+
+  for(p = ptable.proc; p < &ptable.proc[NPROC]; p++){
+    if(p->state == UNUSED)
+      continue;
+    if(p->state >= 0 && p->state < NELEM(states) && states[p->state])
+      state = states[p->state];
+    else
+      state = "???";
+    
+    cprintf("%d \t%s \t %d \t %s \t %d",p->pid, p->name,(ticks - p->start_ticks), state, p->sz);
+    if(p->state == SLEEPING){
+      getcallerpcs((uint*)p->context->ebp+2, pc);
+      for(i=0; i<10 && pc[i] != 0; i++)
+        cprintf(" %p", pc[i]);
+    }
+    cprintf("\n");
+  }
+
+
+/*
   for(p = ptable.proc; p < &ptable.proc[NPROC]; p++){
     if(p->state == UNUSED)
       continue;
@@ -540,6 +566,7 @@ procdump(void)
     }
     cprintf("\n");
   }
+ */
 }
 
 
