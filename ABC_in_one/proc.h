@@ -53,7 +53,8 @@ struct proc {
   char name[16];               // Process name (debugging)
 
   uint start_ticks;
-
+  uint cpu_total;	       //total amount of ticks the cpu had done
+  uint cpu_runtime;	       //runtime  of cpu
   uint uid; 		       //Holds user ID
   uint gid;		       //Holds group ID
 };
