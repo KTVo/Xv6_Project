@@ -107,28 +107,3 @@ sys_date (void)
 
 
 
-
-
-int chmod(char *pathname, int mode)
-{
-  int status = 0;
-
-  return status;
-}
-
-int chown(char *pathname, int owner)
-{
-  int status = 0;
-
-  return status;
-}
-
-int chgrp(char *pathname, int group)
-{
-  int status = 0;
-
-  return status;
-}
-
-
-

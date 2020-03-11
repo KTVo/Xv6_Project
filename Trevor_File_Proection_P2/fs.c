@@ -673,5 +673,30 @@ nameiparent(char *path, char *name)
   return namex(path, 1, name);
 
 }
+int
+chown(char *pathname, int owner){
+
+struct inode *ip;
+ip = pathname;
+ilock(ip);
+ip->uid = owner;
+iunlock(ip);
+ipdate(ip);
+return 0;
 
 
+}
+
+/*
+int
+chown(struct inode *ip, int owner)
+{
+
+  ilock(ip);
+  ip->uid = owner;
+  iunlock(ip);
+  iupdate(ip);
+
+  return 0;
+}
+*/
