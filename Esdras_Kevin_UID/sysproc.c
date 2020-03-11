@@ -131,13 +131,32 @@ sys_getppid(void)
 
 int sys_setuid(void)
 {
-  
-  return setuid(23);
+
+  int uid;
+
+  if(argint(0, &uid) < 0)
+    return -1;
+
+  //int setuid(uint) already checks for this
+  //if(uid < 0 || uid > 32767)
+  //  return -1;
+
+
+ 
+  return setuid(uid);
 }
 
 int sys_setgid(void)
 {
-  //int gid;
-  return setgid(24);
+  int gid;
+
+  if(argint(0, &gid) < 0) 
+    return -1;
+
+  //int setgid(uint) already checks for this
+  //if(gid < 0 || gid > 32767)
+  //  return -1;
+
+  return setgid(gid);
 }
 

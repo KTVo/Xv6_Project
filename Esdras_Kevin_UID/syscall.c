@@ -135,7 +135,7 @@ static int (*syscalls[])(void) = {
 [SYS_close]   sys_close,
 [SYS_date]    sys_date,
 [SYS_getuid]  sys_getuid,
-[SYS_getpid]  sys_getgid,
+[SYS_getgid]  sys_getgid,
 [SYS_getppid] sys_getppid,
 [SYS_setuid]  sys_setuid,
 [SYS_setgid]  sys_setgid,

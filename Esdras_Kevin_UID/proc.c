@@ -142,6 +142,8 @@ userinit(void)
   safestrcpy(p->name, "initcode", sizeof(p->name));
   p->cwd = namei("/");
 
+  
+  
   // this assignment to p->state lets other cores
   // run this process. the acquire forces the above
   // writes to be visible, and the lock is also needed
@@ -545,8 +547,19 @@ procdump(void)
 int
 setuid (uint uid)
 {
-  
+
+  //Checks if UID is in range to continue	
+  if(uid < 0 || uid > 32767)
+      return -1;
+
+  acquire(&ptable.lock);
+
+  //const uint uid2 = 0;
+ 
   struct proc *curproc = myproc();
+
+  //if(argint(uid2, &uid) < 0)
+  //  return -1;
 
   if(uid < 0 && uid > 32767)
   {
@@ -555,6 +568,9 @@ setuid (uint uid)
   }
 
   curproc->uid = uid;
+  
+  release(&ptable.lock);
+
   return 0;
 }
 
@@ -563,18 +579,17 @@ setuid (uint uid)
 int 
 setgid (uint gid)
 {
-  
-  struct proc *curproc = myproc();
-
-  if(gid < 0 && gid > 32767)
-  {
-    //printf("\nError: Value for GID is < 0 or > 32,767.\n");
+  //checks if gid is in range to continue	
+  if(gid < 0 || gid > 32767)
     return -1;
 
-  } 
+  acquire(&ptable.lock);
+
+  struct proc *curproc = myproc(); 
 
   curproc->gid = gid;
 
+  release(&ptable.lock);
   return 0;
 }
 
@@ -582,6 +597,8 @@ setgid (uint gid)
 uint 
 getuid(void)
 {
+
+  
 
   struct proc *curproc = myproc();
 
@@ -592,25 +609,40 @@ getuid(void)
   //release(&ptable.lock);
 
   return curproc->uid; 
+  //return 211;
 }
 
 //Get UID of current procces
-uint getgid(void)
+uint 
+getgid(void)
 {
-  struct proc *curproc = myproc();
+  //struct proc *curproc = myproc();
 
-  return curproc->gid;
+  return myproc()->gid;
+  //return 333;
 }
 
 
 
 
 //Get process ID of parent
-uint getppid(void)
+uint 
+getppid(void)
 {
-  struct proc *curproc = myproc();
+  //struct proc *curproc = myproc();
 
-  return curproc->gid;
+  uint ppid = myproc()->parent->pid;
+
+  if(ppid > 0)
+  {
+    return ppid;
+  }
+  else
+  {
+   return 0;
+  }
+
+  //return curproc->parent->pid;
 }
 
 
