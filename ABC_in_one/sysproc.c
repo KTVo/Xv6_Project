@@ -105,7 +105,11 @@ sys_date (void)
   return 0;
 }
 
-
+int
+sys_cps(void)
+{
+  return cps();
+}
 int 
 sys_getuid(void)
 {
