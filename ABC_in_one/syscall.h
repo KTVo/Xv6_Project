@@ -21,9 +21,9 @@
 #define SYS_mkdir  20
 #define SYS_close  21
 #define SYS_date   22
-#define SYS_getuid 23
-#define SYS_getgid 24
-#define SYS_getppid 25
-#define SYS_setuid 26
-#define SYS_setgid 27
-#define SYS_cps    28
+#define SYS_cps    23
+#define SYS_getuid 24
+#define SYS_getgid 25
+#define SYS_getppid 26
+#define SYS_setuid 27
+#define SYS_setgid 28
