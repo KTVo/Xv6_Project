@@ -23,7 +23,7 @@ int getpid(void);
 char* sbrk(int);
 int sleep(int);
 int uptime(void);
-int date(struct rtcdate *);
+int date(struct rtcdate *); //prototype to the system call for date
 int cps(void);
 int getuid(void); // UID of the current process
 int getgid(void); // GID of the current process

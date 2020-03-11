@@ -92,7 +92,7 @@ sys_uptime(void)
 }
 
 
-
+//Implements sys_date()
 int
 sys_date (void)
 {
@@ -118,7 +118,6 @@ sys_getuid(void)
   return getuid();
 }
 
-
 //Returns the GID
 int 
 sys_getgid(void)
@@ -143,10 +142,8 @@ int sys_setuid(void)
   if(argint(0, &uid) < 0)
     return -1;
 
-  //int setuid(uint) already checks for this
-  //if(uid < 0 || uid > 32767)
-  //  return -1;
- 
+  //int setuid(uint) already checks if (uid < 0 || uid > 32767)
+   
   return setuid(uid);
 }
 
@@ -158,8 +155,7 @@ int sys_setgid(void)
   if(argint(0, &gid) < 0) 
     return -1;
 
-  //int setgid(uint) already checks for this
-  //if(gid < 0 || gid > 32767)
+  //int setgid(uint) already checks for if (gid < 0 || gid > 32767)
   //  return -1;
 
   return setgid(gid);
