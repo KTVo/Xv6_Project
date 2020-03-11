@@ -706,7 +706,7 @@ cps()
       else if(p->state == RUNNING)
          cprintf("%d \t %s \t %d \t %d \t %d \t %d \t %d \t RUNNING\n", p->pid, p->name, p->uid, p->gid, getppid(), (ticks - p->start_ticks), p->sz);
       else if(p->state == RUNNABLE)
-        cprintf("%d \t %s \t %d \t %d \t %d \ %d \t %d \t RUNNABLE\n", p->pid, p->name, p->uid, p->gid, getppid(), (ticks - p->start_ticks), p->sz);
+        cprintf("%d \t %s \t %d \t %d \t %d \t %d \t %d \t RUNNABLE\n", p->pid, p->name, p->uid, p->gid, getppid(), (ticks - p->start_ticks), p->sz);
       else if(p->state == ZOMBIE)
        cprintf("%d \t  %s \t %d \t %d \t %d \t %d \t %d \t ZOMBIE\n", p->pid, p->name, p->uid, p->gid, getppid(), (ticks - p->start_ticks), p->sz);
 
