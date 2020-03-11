@@ -120,6 +120,7 @@ void            userinit(void);
 int             wait(void);
 void            wakeup(void*);
 void            yield(void);
+int             cps(void); //ps command
 //int             id(void);
 
 
@@ -131,7 +132,6 @@ uint getgid (void);   // GID of the current process
 uint getppid (void);  // process ID of the parent process
 int setuid (uint);    // set UID
 int setgid (uint);    // set GID
-int cps(void);        // ps command
 
 
 
