@@ -5,8 +5,8 @@ _id:     file format elf32-i386
 Disassembly of section .text:
 
 00000000 <main>:
-
-
+#include "stat.h"
+#include "user.h"
 
 int
 main(void)
@@ -21,67 +21,67 @@ main(void)
  uint uid, gid, ppid;
 
  uid = getuid();
-  11:	e8 b5 03 00 00       	call   3cb <getuid>
- printf(2, "1 - Current UID is: %d\n", uid);
+  11:	e8 bd 03 00 00       	call   3d3 <getuid>
+ printf(2, "Current UID is: %d\n", uid);
   16:	83 ec 04             	sub    $0x4,%esp
   19:	50                   	push   %eax
   1a:	68 18 08 00 00       	push   $0x818
   1f:	6a 02                	push   $0x2
   21:	e8 8a 04 00 00       	call   4b0 <printf>
- printf(2, "2 - Setting UID to 100\n");
+ printf(2, "Setting UID to 100\n");
   26:	58                   	pop    %eax
   27:	5a                   	pop    %edx
-  28:	68 30 08 00 00       	push   $0x830
+  28:	68 2c 08 00 00       	push   $0x82c
   2d:	6a 02                	push   $0x2
   2f:	e8 7c 04 00 00       	call   4b0 <printf>
  setuid(100);
   34:	c7 04 24 64 00 00 00 	movl   $0x64,(%esp)
-  3b:	e8 a3 03 00 00       	call   3e3 <setuid>
+  3b:	e8 ab 03 00 00       	call   3eb <setuid>
  uid = getuid();
-  40:	e8 86 03 00 00       	call   3cb <getuid>
- printf(2, "3 - Current UID is: %d\n", uid);
+  40:	e8 8e 03 00 00       	call   3d3 <getuid>
+ printf(2, "Current UID is: %d\n", uid);
   45:	83 c4 0c             	add    $0xc,%esp
   48:	50                   	push   %eax
-  49:	68 48 08 00 00       	push   $0x848
+  49:	68 18 08 00 00       	push   $0x818
   4e:	6a 02                	push   $0x2
   50:	e8 5b 04 00 00       	call   4b0 <printf>
  gid = getgid();
-  55:	e8 79 03 00 00       	call   3d3 <getgid>
- printf(2, "4 - Current GID is: %d\n", gid);
+  55:	e8 81 03 00 00       	call   3db <getgid>
+ printf(2, "Current GID is: %d\n", gid);
   5a:	83 c4 0c             	add    $0xc,%esp
   5d:	50                   	push   %eax
-  5e:	68 60 08 00 00       	push   $0x860
+  5e:	68 40 08 00 00       	push   $0x840
   63:	6a 02                	push   $0x2
   65:	e8 46 04 00 00       	call   4b0 <printf>
- printf(2, "5 - Setting GID to 100\n");
+ printf(2, "Setting GID to 100\n");
   6a:	59                   	pop    %ecx
   6b:	58                   	pop    %eax
-  6c:	68 78 08 00 00       	push   $0x878
+  6c:	68 54 08 00 00       	push   $0x854
   71:	6a 02                	push   $0x2
   73:	e8 38 04 00 00       	call   4b0 <printf>
  setgid(100);
   78:	c7 04 24 64 00 00 00 	movl   $0x64,(%esp)
-  7f:	e8 67 03 00 00       	call   3eb <setgid>
+  7f:	e8 6f 03 00 00       	call   3f3 <setgid>
  gid = getgid();
-  84:	e8 4a 03 00 00       	call   3d3 <getgid>
- printf(2, "6 - Current GID is: %d\n", gid);
+  84:	e8 52 03 00 00       	call   3db <getgid>
+ printf(2, "Current GID is: %d\n", gid);
   89:	83 c4 0c             	add    $0xc,%esp
   8c:	50                   	push   %eax
-  8d:	68 90 08 00 00       	push   $0x890
+  8d:	68 40 08 00 00       	push   $0x840
   92:	6a 02                	push   $0x2
   94:	e8 17 04 00 00       	call   4b0 <printf>
  ppid = getppid();
-  99:	e8 3d 03 00 00       	call   3db <getppid>
- printf(2, "7 - My parent process is: %d\n", ppid);
+  99:	e8 45 03 00 00       	call   3e3 <getppid>
+ printf(2, "My parent process is: %d\n", ppid);
   9e:	83 c4 0c             	add    $0xc,%esp
   a1:	50                   	push   %eax
-  a2:	68 a8 08 00 00       	push   $0x8a8
+  a2:	68 68 08 00 00       	push   $0x868
   a7:	6a 02                	push   $0x2
   a9:	e8 02 04 00 00       	call   4b0 <printf>
  printf(2, "Done!\n");
   ae:	58                   	pop    %eax
   af:	5a                   	pop    %edx
-  b0:	68 c6 08 00 00       	push   $0x8c6
+  b0:	68 82 08 00 00       	push   $0x882
   b5:	6a 02                	push   $0x2
   b7:	e8 f4 03 00 00       	call   4b0 <printf>
  exit();
@@ -623,39 +623,41 @@ SYSCALL(date)
  3c8:	cd 40                	int    $0x40
  3ca:	c3                   	ret    
 
-000003cb <getuid>:
-SYSCALL(getuid)
+000003cb <cps>:
+SYSCALL(cps)
  3cb:	b8 17 00 00 00       	mov    $0x17,%eax
  3d0:	cd 40                	int    $0x40
  3d2:	c3                   	ret    
 
-000003d3 <getgid>:
-SYSCALL(getgid)
+000003d3 <getuid>:
+SYSCALL(getuid)
  3d3:	b8 18 00 00 00       	mov    $0x18,%eax
  3d8:	cd 40                	int    $0x40
  3da:	c3                   	ret    
 
-000003db <getppid>:
-SYSCALL(getppid)
+000003db <getgid>:
+SYSCALL(getgid)
  3db:	b8 19 00 00 00       	mov    $0x19,%eax
  3e0:	cd 40                	int    $0x40
  3e2:	c3                   	ret    
 
-000003e3 <setuid>:
-SYSCALL(setuid)
+000003e3 <getppid>:
+SYSCALL(getppid)
  3e3:	b8 1a 00 00 00       	mov    $0x1a,%eax
  3e8:	cd 40                	int    $0x40
  3ea:	c3                   	ret    
 
-000003eb <setgid>:
-SYSCALL(setgid)
+000003eb <setuid>:
+SYSCALL(setuid)
  3eb:	b8 1b 00 00 00       	mov    $0x1b,%eax
  3f0:	cd 40                	int    $0x40
  3f2:	c3                   	ret    
- 3f3:	66 90                	xchg   %ax,%ax
- 3f5:	66 90                	xchg   %ax,%ax
- 3f7:	66 90                	xchg   %ax,%ax
- 3f9:	66 90                	xchg   %ax,%ax
+
+000003f3 <setgid>:
+SYSCALL(setgid)
+ 3f3:	b8 1c 00 00 00       	mov    $0x1c,%eax
+ 3f8:	cd 40                	int    $0x40
+ 3fa:	c3                   	ret    
  3fb:	66 90                	xchg   %ax,%ax
  3fd:	66 90                	xchg   %ax,%ax
  3ff:	90                   	nop
@@ -706,7 +708,7 @@ printint(int fd, int xx, int base, int sgn)
  432:	31 d2                	xor    %edx,%edx
  434:	89 cf                	mov    %ecx,%edi
  436:	f7 75 c4             	divl   -0x3c(%ebp)
- 439:	0f b6 92 d4 08 00 00 	movzbl 0x8d4(%edx),%edx
+ 439:	0f b6 92 90 08 00 00 	movzbl 0x890(%edx),%edx
  440:	89 45 c0             	mov    %eax,-0x40(%ebp)
  443:	89 d8                	mov    %ebx,%eax
  445:	8d 5b 01             	lea    0x1(%ebx),%ebx
@@ -976,7 +978,7 @@ printf(int fd, char *fmt, ...)
  631:	8b 5d 08             	mov    0x8(%ebp),%ebx
  634:	eb 1a                	jmp    650 <printf+0x1a0>
           s = "(null)";
- 636:	bb cd 08 00 00       	mov    $0x8cd,%ebx
+ 636:	bb 89 08 00 00       	mov    $0x889,%ebx
         while(*s != 0){
  63b:	89 75 d4             	mov    %esi,-0x2c(%ebp)
  63e:	b8 28 00 00 00       	mov    $0x28,%eax
@@ -1021,7 +1023,7 @@ free(void *ap)
 
   bp = (Header*)ap - 1;
   for(p = freep; !(bp > p && bp < p->s.ptr); p = p->s.ptr)
- 681:	a1 7c 0b 00 00       	mov    0xb7c,%eax
+ 681:	a1 38 0b 00 00       	mov    0xb38,%eax
 {
  686:	89 e5                	mov    %esp,%ebp
  688:	57                   	push   %edi
@@ -1077,7 +1079,7 @@ free(void *ap)
 }
  6d1:	5b                   	pop    %ebx
   freep = p;
- 6d2:	a3 7c 0b 00 00       	mov    %eax,0xb7c
+ 6d2:	a3 38 0b 00 00       	mov    %eax,0xb38
 }
  6d7:	5e                   	pop    %esi
  6d8:	5f                   	pop    %edi
@@ -1100,7 +1102,7 @@ free(void *ap)
     p->s.size += bp->s.size;
  6f7:	03 53 fc             	add    -0x4(%ebx),%edx
   freep = p;
- 6fa:	a3 7c 0b 00 00       	mov    %eax,0xb7c
+ 6fa:	a3 38 0b 00 00       	mov    %eax,0xb38
     p->s.size += bp->s.size;
  6ff:	89 50 04             	mov    %edx,0x4(%eax)
     p->s.ptr = bp->s.ptr;
@@ -1133,7 +1135,7 @@ malloc(uint nbytes)
   nunits = (nbytes + sizeof(Header) - 1)/sizeof(Header) + 1;
  719:	8b 45 08             	mov    0x8(%ebp),%eax
   if((prevp = freep) == 0){
- 71c:	8b 3d 7c 0b 00 00    	mov    0xb7c,%edi
+ 71c:	8b 3d 38 0b 00 00    	mov    0xb38,%edi
   nunits = (nbytes + sizeof(Header) - 1)/sizeof(Header) + 1;
  722:	8d 70 07             	lea    0x7(%eax),%esi
  725:	c1 ee 03             	shr    $0x3,%esi
@@ -1165,7 +1167,7 @@ malloc(uint nbytes)
  762:	8b 4a 04             	mov    0x4(%edx),%ecx
  765:	39 f1                	cmp    %esi,%ecx
  767:	73 4f                	jae    7b8 <malloc+0xa8>
- 769:	8b 3d 7c 0b 00 00    	mov    0xb7c,%edi
+ 769:	8b 3d 38 0b 00 00    	mov    0xb38,%edi
  76f:	89 d0                	mov    %edx,%eax
         p->s.size = nunits;
       }
@@ -1191,7 +1193,7 @@ malloc(uint nbytes)
  791:	50                   	push   %eax
  792:	e8 e9 fe ff ff       	call   680 <free>
   return freep;
- 797:	a1 7c 0b 00 00       	mov    0xb7c,%eax
+ 797:	a1 38 0b 00 00       	mov    0xb38,%eax
       if((p = morecore(nunits)) == 0)
  79c:	83 c4 10             	add    $0x10,%esp
  79f:	85 c0                	test   %eax,%eax
@@ -1223,7 +1225,7 @@ malloc(uint nbytes)
         p->s.size = nunits;
  7c4:	89 72 04             	mov    %esi,0x4(%edx)
       freep = prevp;
- 7c7:	a3 7c 0b 00 00       	mov    %eax,0xb7c
+ 7c7:	a3 38 0b 00 00       	mov    %eax,0xb38
 }
  7cc:	8d 65 f4             	lea    -0xc(%ebp),%esp
       return (void*)(p + 1);
@@ -1237,17 +1239,17 @@ malloc(uint nbytes)
  7d7:	8d b4 26 00 00 00 00 	lea    0x0(%esi,%eiz,1),%esi
  7de:	66 90                	xchg   %ax,%ax
     base.s.ptr = freep = prevp = &base;
- 7e0:	c7 05 7c 0b 00 00 80 	movl   $0xb80,0xb7c
+ 7e0:	c7 05 38 0b 00 00 3c 	movl   $0xb3c,0xb38
  7e7:	0b 00 00 
     base.s.size = 0;
- 7ea:	bf 80 0b 00 00       	mov    $0xb80,%edi
+ 7ea:	bf 3c 0b 00 00       	mov    $0xb3c,%edi
     base.s.ptr = freep = prevp = &base;
- 7ef:	c7 05 80 0b 00 00 80 	movl   $0xb80,0xb80
+ 7ef:	c7 05 3c 0b 00 00 3c 	movl   $0xb3c,0xb3c
  7f6:	0b 00 00 
   for(p = prevp->s.ptr; ; prevp = p, p = p->s.ptr){
  7f9:	89 f8                	mov    %edi,%eax
     base.s.size = 0;
- 7fb:	c7 05 84 0b 00 00 00 	movl   $0x0,0xb84
+ 7fb:	c7 05 40 0b 00 00 00 	movl   $0x0,0xb40
  802:	00 00 00 
     if(p->s.size >= nunits){
  805:	e9 32 ff ff ff       	jmp    73c <malloc+0x2c>

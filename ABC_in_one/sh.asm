@@ -1996,39 +1996,41 @@ SYSCALL(date)
      dd8:	cd 40                	int    $0x40
      dda:	c3                   	ret    
 
-00000ddb <getuid>:
-SYSCALL(getuid)
+00000ddb <cps>:
+SYSCALL(cps)
      ddb:	b8 17 00 00 00       	mov    $0x17,%eax
      de0:	cd 40                	int    $0x40
      de2:	c3                   	ret    
 
-00000de3 <getgid>:
-SYSCALL(getgid)
+00000de3 <getuid>:
+SYSCALL(getuid)
      de3:	b8 18 00 00 00       	mov    $0x18,%eax
      de8:	cd 40                	int    $0x40
      dea:	c3                   	ret    
 
-00000deb <getppid>:
-SYSCALL(getppid)
+00000deb <getgid>:
+SYSCALL(getgid)
      deb:	b8 19 00 00 00       	mov    $0x19,%eax
      df0:	cd 40                	int    $0x40
      df2:	c3                   	ret    
 
-00000df3 <setuid>:
-SYSCALL(setuid)
+00000df3 <getppid>:
+SYSCALL(getppid)
      df3:	b8 1a 00 00 00       	mov    $0x1a,%eax
      df8:	cd 40                	int    $0x40
      dfa:	c3                   	ret    
 
-00000dfb <setgid>:
-SYSCALL(setgid)
+00000dfb <setuid>:
+SYSCALL(setuid)
      dfb:	b8 1b 00 00 00       	mov    $0x1b,%eax
      e00:	cd 40                	int    $0x40
      e02:	c3                   	ret    
-     e03:	66 90                	xchg   %ax,%ax
-     e05:	66 90                	xchg   %ax,%ax
-     e07:	66 90                	xchg   %ax,%ax
-     e09:	66 90                	xchg   %ax,%ax
+
+00000e03 <setgid>:
+SYSCALL(setgid)
+     e03:	b8 1c 00 00 00       	mov    $0x1c,%eax
+     e08:	cd 40                	int    $0x40
+     e0a:	c3                   	ret    
      e0b:	66 90                	xchg   %ax,%ax
      e0d:	66 90                	xchg   %ax,%ax
      e0f:	90                   	nop
