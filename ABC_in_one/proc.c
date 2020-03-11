@@ -545,7 +545,7 @@ procdump(void)
 
 
   cprintf("\n");
-  cprintf("PID \t Name \t Elapsed \tState \t Size \tPCs \t\n");
+  cprintf("PID \t Name \t UID \t GID \t Elapsed \tState \t Size \tPCs \t\n");
 
   for(p = ptable.proc; p < &ptable.proc[NPROC]; p++){
     if(p->state == UNUSED)
@@ -555,7 +555,7 @@ procdump(void)
     else
       state = "???";
     
-    cprintf("%d \t%s \t %d \t        %s \t %d",p->pid, p->name,(ticks - p->start_ticks), state, p->sz);
+    cprintf("%d \t%s \t %d \t %d \t %d \t        %s \t %d",p->pid, p->name, p->uid, p->gid, (ticks - p->start_ticks), state, p->sz);
     if(p->state == SLEEPING){
       getcallerpcs((uint*)p->context->ebp+2, pc);
       for(i=0; i<10 && pc[i] != 0; i++)
@@ -687,5 +687,32 @@ getppid(void)
   //return curproc->parent->pid;
 }
 
+//current process status
+int
+cps()
+{
+  struct proc *p;
 
+  // Enable interrupts on this processor.
+  sti();
+
+  // Loop over process table looking for process with pid.
+  acquire(&ptable.lock);
+  cprintf("pid \t name \t UID \t GID \t PPID \t ELAPSED \t size \t state\n");
+  for(p = ptable.proc; p < &ptable.proc[NPROC]; p++)
+  {
+      if(p->state == SLEEPING)
+        cprintf("%d \t %s \t %d \t %d \t %d \t %d \t %d \t SLEEPING\n", p->pid, p->name, p->uid, p-> gid, getppid(), (ticks - p->start_ticks), p->sz);
+      else if(p->state == RUNNING)
+         cprintf("%d \t %s \t %d \t %d \t %d \t %d \t %d \t RUNNING\n", p->pid, p->name, p->uid, p->gid, getppid(), (ticks - p->start_ticks), p->sz);
+      else if(p->state == RUNNABLE)
+        cprintf("%d \t %s \t %d \t %d \t %d \t %d \t %d \t RUNNABLE\n", p->pid, p->name, p->uid, p->gid, getppid(), (ticks - p->start_ticks), p->sz);
+      else if(p->state == ZOMBIE)
+       cprintf("%d \t  %s \t %d \t %d \t %d \t %d \t %d \t ZOMBIE\n", p->pid, p->name, p->uid, p->gid, getppid(), (ticks - p->start_ticks), p->sz);
+
+  }
+  release(&ptable.lock);
+
+  return 22;
+}
 

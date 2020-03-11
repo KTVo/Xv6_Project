@@ -443,6 +443,7 @@ sys_pipe(void)
   fd[1] = fd1;
   return 0;
 }
+/*
 int
 sys_chmod(void) {
         char *path;
@@ -463,12 +464,22 @@ sys_chmod(void) {
         end_op();
         return 0;
    }
-/*
+*/
 int
-sys_chown(void){
-	return 0;
-}
-
+sys_chown(void)
+{
+  char *pathname;
+  int owner;
+  if(argstr(0, &pathname) < 0)
+    return -1;
+  if(argint(1, &owner) < 0)
+    return -1;
+//  struct inode *ip = namei(pathname);
+//  if(!ip)
+//    return -1;
+  return chown(pathname, owner);
+}        
+/*
 int
 sys_chgrp(void){
 	return 0;

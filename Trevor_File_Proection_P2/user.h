@@ -24,8 +24,8 @@ char* sbrk(int);
 int sleep(int);
 int uptime(void);
 int date(struct rtcdate *);
-int chmod(char*, int);
-//int chown(char*, int);
+//int chmod(char*, int);
+int chown(char *pathname, int owner);
 //int chgrp(char*, int);
 
 
