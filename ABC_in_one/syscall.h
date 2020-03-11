@@ -26,4 +26,4 @@
 #define SYS_getppid 25
 #define SYS_setuid 26
 #define SYS_setgid 27
-
+#define SYS_cps    28

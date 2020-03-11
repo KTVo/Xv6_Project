@@ -24,7 +24,7 @@ char* sbrk(int);
 int sleep(int);
 int uptime(void);
 int date(struct rtcdate *);
-
+int cps(void);
 int getuid(void); // UID of the current process
 int getgid(void); // GID of the current process
 int getppid(void); // process ID of the parent process
