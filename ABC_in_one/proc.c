@@ -692,23 +692,28 @@ int
 cps()
 {
   struct proc *p;
+  
 
+  
   // Enable interrupts on this processor.
   sti();
 
   // Loop over process table looking for process with pid.
   acquire(&ptable.lock);
-  cprintf("pid \t name \t UID \t GID \t PPID \t ELAPSED \t size \t state\n");
+  cprintf("pid \t name \t UID \t GID \t PPID \t ELAPSED \tSIZE\t  STATE\n");
   for(p = ptable.proc; p < &ptable.proc[NPROC]; p++)
   {
       if(p->state == SLEEPING)
-        cprintf("%d \t %s \t %d \t %d \t %d \t %d \t %d \t SLEEPING\n", p->pid, p->name, p->uid, p-> gid, getppid(), (ticks - p->start_ticks), p->sz);
+        cprintf("%d \t %s \t %d \t %d \t %d \t   %d \t        %d \t SLEEPING\n", p->pid, p->name, p->uid, p-> gid, getppid(), (ticks - p->start_ticks), p->sz);
       else if(p->state == RUNNING)
-         cprintf("%d \t %s \t %d \t %d \t %d \t %d \t %d \t RUNNING\n", p->pid, p->name, p->uid, p->gid, getppid(), (ticks - p->start_ticks), p->sz);
+         cprintf("%d \t %s \t %d \t %d \t %d \t   %d \t        %d \t RUNNING\n", p->pid, p->name, p->uid, p->gid, getppid(), (ticks - p->start_ticks), p->sz);
       else if(p->state == RUNNABLE)
-        cprintf("%d \t %s \t %d \t %d \t %d \t %d \t %d \t RUNNABLE\n", p->pid, p->name, p->uid, p->gid, getppid(), (ticks - p->start_ticks), p->sz);
+        cprintf("%d \t %s \t %d \t %d \t %d \t   %d \t         %d \t RUNNABLE\n", p->pid, p->name, p->uid, p->gid, getppid(), (ticks - p->start_ticks), p->sz);
       else if(p->state == ZOMBIE)
-       cprintf("%d \t  %s \t %d \t %d \t %d \t %d \t %d \t ZOMBIE\n", p->pid, p->name, p->uid, p->gid, getppid(), (ticks - p->start_ticks), p->sz);
+       cprintf("%d \t  %s \t %d \t %d \t %d \t   %d \t         %d \t ZOMBIE\n", p->pid, p->name, p->uid, p->gid, getppid(), (ticks - p->start_ticks), p->sz);
+
+         
+
 
   }
   release(&ptable.lock);

@@ -12,16 +12,16 @@
 00000000 .debug_loc
 00000000 .debug_ranges
 00000000 sh.c
-00001900 buf.1130
+00001900 buf.1132
 00000000 ulib.c
 00000000 printf.c
 00000e10 printint
-00001318 digits.1092
+00001318 digits.1094
 00000000 umalloc.c
 00001964 freep
 00001968 base
 00000ae0 strcpy
-00000de3 getgid
+00000deb getgid
 00000ec0 printf
 00000d00 memmove
 00000d7b mknod
@@ -31,7 +31,7 @@
 00000820 parsepipe
 00000a70 parsecmd
 00000450 backcmd
-00000ddb getuid
+00000de3 getuid
 000005e0 peek
 00000660 parseredirs
 00000480 gettoken
@@ -52,7 +52,7 @@
 00000d6b exec
 00000d3b wait
 000018e8 symbols
-00000dfb setgid
+00000e03 setgid
 00000d4b read
 00000710 parseexec
 00000d83 unlink
@@ -63,7 +63,7 @@
 000018f6 __bss_start
 00000b90 memset
 00000000 main
-00000deb getppid
+00000df3 getppid
 00000b10 strcmp
 00000dab dup
 000003d0 pipecmd
@@ -78,7 +78,8 @@
 00000b60 strlen
 00000d73 open
 00000bb0 strchr
-00000df3 setuid
+00000ddb cps
+00000dfb setuid
 00000d9b mkdir
 00000d5b close
 00000410 listcmd

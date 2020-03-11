@@ -588,39 +588,41 @@ SYSCALL(date)
  368:	cd 40                	int    $0x40
  36a:	c3                   	ret    
 
-0000036b <getuid>:
-SYSCALL(getuid)
+0000036b <cps>:
+SYSCALL(cps)
  36b:	b8 17 00 00 00       	mov    $0x17,%eax
  370:	cd 40                	int    $0x40
  372:	c3                   	ret    
 
-00000373 <getgid>:
-SYSCALL(getgid)
+00000373 <getuid>:
+SYSCALL(getuid)
  373:	b8 18 00 00 00       	mov    $0x18,%eax
  378:	cd 40                	int    $0x40
  37a:	c3                   	ret    
 
-0000037b <getppid>:
-SYSCALL(getppid)
+0000037b <getgid>:
+SYSCALL(getgid)
  37b:	b8 19 00 00 00       	mov    $0x19,%eax
  380:	cd 40                	int    $0x40
  382:	c3                   	ret    
 
-00000383 <setuid>:
-SYSCALL(setuid)
+00000383 <getppid>:
+SYSCALL(getppid)
  383:	b8 1a 00 00 00       	mov    $0x1a,%eax
  388:	cd 40                	int    $0x40
  38a:	c3                   	ret    
 
-0000038b <setgid>:
-SYSCALL(setgid)
+0000038b <setuid>:
+SYSCALL(setuid)
  38b:	b8 1b 00 00 00       	mov    $0x1b,%eax
  390:	cd 40                	int    $0x40
  392:	c3                   	ret    
- 393:	66 90                	xchg   %ax,%ax
- 395:	66 90                	xchg   %ax,%ax
- 397:	66 90                	xchg   %ax,%ax
- 399:	66 90                	xchg   %ax,%ax
+
+00000393 <setgid>:
+SYSCALL(setgid)
+ 393:	b8 1c 00 00 00       	mov    $0x1c,%eax
+ 398:	cd 40                	int    $0x40
+ 39a:	c3                   	ret    
  39b:	66 90                	xchg   %ax,%ax
  39d:	66 90                	xchg   %ax,%ax
  39f:	90                   	nop
