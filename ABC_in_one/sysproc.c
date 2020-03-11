@@ -110,6 +110,8 @@ sys_cps(void)
 {
   return cps();
 }
+
+//Returns the UID
 int 
 sys_getuid(void)
 {
@@ -117,14 +119,14 @@ sys_getuid(void)
 }
 
 
-
+//Returns the GID
 int 
 sys_getgid(void)
 {
   return getgid();
 }
 
-
+//Returns the PPID
 int 
 sys_getppid(void)
 {
@@ -132,7 +134,7 @@ sys_getppid(void)
 }
 
 
-
+//Set the UID with passing arguments into a kernel function
 int sys_setuid(void)
 {
 
@@ -144,12 +146,11 @@ int sys_setuid(void)
   //int setuid(uint) already checks for this
   //if(uid < 0 || uid > 32767)
   //  return -1;
-
-
  
   return setuid(uid);
 }
 
+//Set GID with passing arguments into a kernel function
 int sys_setgid(void)
 {
   int gid;
