@@ -682,15 +682,23 @@ getppid(void)
 {
   //struct proc *curproc = myproc();
 
-  uint ppid = myproc()->parent->pid;
+  //uint ppid = myproc()->parent->pid;
+  //p->parent->pid;
+  struct proc *p;
 
-  if(ppid > 0)
+  sti();
+  acquire(&ptable.lock);
+  p = ptable.proc;
+  uint temp = p->pid;
+  release(&ptable.lock);
+  if(temp > 0)
   {
-    return ppid;
+    return temp;
   }
   else
   {
-   return 0;
+    temp = 0;
+    return temp;
   }
 
   //return curproc->parent->pid;
@@ -711,15 +719,16 @@ cps()
   acquire(&ptable.lock);
   cprintf("pid \t name \t UID \t GID \t PPID \t ELAPSED \t CPU \tSIZE\t  STATE\n");
   for(p = ptable.proc; p < &ptable.proc[NPROC]; p++)
-  {
+  {     if(p->parent->pid < 0)
+	  p->parent->pid = 0;
       if(p->state == SLEEPING)
-        cprintf("%d \t %s \t %d \t %d \t %d \t   %d \t %d \t %d \t SLEEPING\n", p->pid, p->name, p->uid, p-> gid, getppid(), (ticks - p->start_ticks), p->cpu_total, p->sz);
+        cprintf("%d \t %s \t %d \t %d \t %d \t   %d \t %d \t %d \t SLEEPING\n", p->pid, p->name, p->uid, p-> gid, p->parent->pid, (ticks - p->start_ticks), p->cpu_total, p->sz);
       else if(p->state == RUNNING)
-         cprintf("%d \t %s \t %d \t %d \t %d \t   %d \t %d\t %d \t RUNNING\n", p->pid, p->name, p->uid, p->gid, getppid(), (ticks - p->start_ticks), p->cpu_total , p->sz);
+         cprintf("%d \t %s \t %d \t %d \t %d \t   %d \t %d\t %d \t RUNNING\n", p->pid, p->name, p->uid, p->gid, p->parent->pid, (ticks - p->start_ticks), p->cpu_total , p->sz);
       else if(p->state == RUNNABLE)
-        cprintf("%d \t %s \t %d \t %d \t %d \t   %d \t %d \t %d \t RUNNABLE\n", p->pid, p->name, p->uid, p->gid, getppid(), (ticks - p->start_ticks), p->cpu_total , p->sz);
+        cprintf("%d \t %s \t %d \t %d \t %d \t   %d \t %d \t %d \t RUNNABLE\n", p->pid, p->name, p->uid, p->gid, p->parent->pid, (ticks - p->start_ticks), p->cpu_total , p->sz);
       else if(p->state == ZOMBIE)
-       cprintf("%d \t  %s \t %d \t %d \t %d \t   %d \t %d \t %d \t ZOMBIE\n", p->pid, p->name, p->uid, p->gid, getppid(), (ticks - p->start_ticks), p->cpu_total,  p->sz);
+       cprintf("%d \t  %s \t %d \t %d \t %d \t   %d \t %d \t %d \t ZOMBIE\n", p->pid, p->name, p->uid, p->gid, p->parent->pid, (ticks - p->start_ticks), p->cpu_total,  p->sz);
 
          
 
