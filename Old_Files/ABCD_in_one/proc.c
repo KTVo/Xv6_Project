@@ -648,32 +648,21 @@ setgid (uint gid)
 uint 
 getuid(void)
 {
-
-  
-
   struct proc *curproc = myproc();
 
- // sti(); //interrupts on this processor
-
-  //acquire(&ptable.lock);
-
-  //release(&ptable.lock);
 
   return curproc->uid; 
-  //return 211;
+  
 }
 
 //Get UID of current procces
 uint 
 getgid(void)
 {
-  //struct proc *curproc = myproc();
 
   return myproc()->gid;
-  //return 333;
+  
 }
-
-
 
 
 //Get process ID of parent
@@ -701,7 +690,6 @@ getppid(void)
     return temp;
   }
 
-  //return curproc->parent->pid;
 }
 
 //current process status
