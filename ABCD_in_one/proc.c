@@ -564,7 +564,7 @@ procdump(void)
     else
       state = "???";
     
-    cprintf("%d \t%s \t %d \t %d \t %d \t          %d \t      %s \t %d",p->pid, p->name, p->uid, p->gid, (ticks - p->start_ticks), p->cpu_total ,state, p->sz);
+    cprintf("%d \t %s \t %d \t %d \t %d \t         %d \t      %s \t %d ",p->pid, p->name, p->uid, p->gid, (ticks - p->start_ticks), p->cpu_total ,state, p->sz);
     if(p->state == SLEEPING){
       getcallerpcs((uint*)p->context->ebp+2, pc);
       for(i=0; i<10 && pc[i] != 0; i++)
@@ -722,13 +722,13 @@ cps()
   {     if(p->parent->pid < 0)
 	  p->parent->pid = 0;
       if(p->state == SLEEPING)
-        cprintf("%d \t %s \t %d \t %d \t %d \t   %d \t %d \t %d \t SLEEPING\n", p->pid, p->name, p->uid, p-> gid, p->parent->pid, (ticks - p->start_ticks), p->cpu_total, p->sz);
+        cprintf("%d \t %s \t %d \t %d \t %d \t %d \t \t %d \t%d \t  SLEEPING\n", p->pid, p->name, p->uid, p-> gid, p->parent->pid, (ticks - p->start_ticks), p->cpu_total, p->sz);
       else if(p->state == RUNNING)
-         cprintf("%d \t %s \t %d \t %d \t %d \t   %d \t %d\t %d \t RUNNING\n", p->pid, p->name, p->uid, p->gid, p->parent->pid, (ticks - p->start_ticks), p->cpu_total , p->sz);
+         cprintf("%d \t %s \t %d \t %d \t %d \t %d \t \t %d \t%d \t  RUNNING\n", p->pid, p->name, p->uid, p->gid, p->parent->pid, (ticks - p->start_ticks), p->cpu_total , p->sz);
       else if(p->state == RUNNABLE)
-        cprintf("%d \t %s \t %d \t %d \t %d \t   %d \t %d \t %d \t RUNNABLE\n", p->pid, p->name, p->uid, p->gid, p->parent->pid, (ticks - p->start_ticks), p->cpu_total , p->sz);
+        cprintf("%d \t %s \t %d \t %d \t %d \t %d \t \t %d \t%d \t  RUNNABLE\n", p->pid, p->name, p->uid, p->gid, p->parent->pid, (ticks - p->start_ticks), p->cpu_total , p->sz);
       else if(p->state == ZOMBIE)
-       cprintf("%d \t  %s \t %d \t %d \t %d \t   %d \t %d \t %d \t ZOMBIE\n", p->pid, p->name, p->uid, p->gid, p->parent->pid, (ticks - p->start_ticks), p->cpu_total,  p->sz);
+       cprintf("%d \t  %s \t %d \t %d \t %d \t %d \t \t %d \t%d \t  ZOMBIE\n", p->pid, p->name, p->uid, p->gid, p->parent->pid, (ticks - p->start_ticks), p->cpu_total,  p->sz);
 
          
 
