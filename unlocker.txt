@@ -1,0 +1,2 @@
+When have no rights to execute sign.pl
+Change the permissions by executing: chmod a+x sign.pl
